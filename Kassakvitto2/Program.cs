@@ -118,12 +118,6 @@ namespace Kassakvitto2
         }
         static void DelaUppIFaktorer(uint vaxel)
         {
-            /*Jag kunde inte komma på hur jag BRA skulle kunna skilja på sedlar/mynt i utskriften
-            så jag chansade och skrev en ful while-sats. Väl medveten om att det troligen är fel tillvägagångssätt
-            då jag antar att det, enligt instruktionerna, menas att man bara får använda ett "decision statement" 
-            (det är bara att byta ut nyckelordet while till if så har man ett "decision statement"). Hade jag haft fria händer hade jag 
-            istället lagt till en if-sats för att bestämma valör för utskriften. Jag testade också andra tillvägagångsätt 
-            (kalla på metoder, switch-satser, dubbla while-satser m fl) men de blev för långa.*/
             uint[] valorer = {500, 100, 50, 20, 10, 5, 1};
             string[] valorTyper = { "-lappar", "-lappar", "-lappar", "-lappar", "-kronor", "-kronor", "-kronor" };
             uint antal = 0U;
