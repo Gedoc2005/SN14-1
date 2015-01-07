@@ -125,27 +125,20 @@ namespace Kassakvitto2
             istället lagt till en if-sats för att bestämma valör för utskriften. Jag testade också andra tillvägagångsätt 
             (kalla på metoder, switch-satser, dubbla while-satser m fl) men de blev för långa.*/
             uint[] valorer = {500, 100, 50, 20, 10, 5, 1};
+            string[] valorTyper = { "-lappar", "-lappar", "-lappar", "-lappar", "-kronor", "-kronor", "-kronor" };
             uint antal = 0U;
-            string valorTyp = "";
 
-            foreach (uint valor in valorer)
+            for (int i = 0; i < valorer.Length; i++)
             {
                 //Räkna ut antal sedlar/mynt det går på varje valör... :
-                antal = vaxel / valor;
+                antal = vaxel / valorer[i];
                 //... och hur mycket växel som blir över efter varje iteration:
-                vaxel %= valor;
+                vaxel %= valorer[i];
 
                 //Om resterande växel gick att dela med nuvarande valören, skriv ut detta:
                 if (antal != 0)
                 {
-                    //Välj sedel/mynt-utskrift:
-                    valorTyp = "-kronor";
-                    while (valor > 10) //Detta är while-satsen jag är osäker på.
-                    {
-                        valorTyp = "-lappar";
-                        break;
-                    }
-                    Console.WriteLine("{0, -17}: {1}", valor + valorTyp, antal);
+                    Console.WriteLine("{0, -17}: {1}", valorer[i] + valorTyper[i], antal);
                 }
             }
         }
