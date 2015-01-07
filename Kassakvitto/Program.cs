@@ -77,11 +77,11 @@ namespace Kassakvitto
 
             //Skriv ut kvitto:
             Console.WriteLine("\nKVITTO\n-------------------------------");
-            Console.WriteLine("{0,-17}:{1,10} kr", "Totalt", totalsumma);
-            Console.WriteLine("{0,-17}:{1,10} kr", "Öresavrundning", oresavrundning);
-            Console.WriteLine("{0,-17}:{1,10} kr", "Att betala", totalsummaAvrundat);
-            Console.WriteLine("{0,-17}:{1,10} kr", "Kontant", erhalletBelopp);
-            Console.WriteLine("{0,-17}:{1,10} kr", "Tillbaka", beloppTillbaka);
+            Console.WriteLine("{0,-17}:{1,13:C}", "Totalt", totalsumma);
+            Console.WriteLine("{0,-17}:{1,13:C}", "Öresavrundning", oresavrundning);
+            Console.WriteLine("{0,-17}:{1,13:C0}", "Att betala", totalsummaAvrundat);
+            Console.WriteLine("{0,-17}:{1,13:C0}", "Kontant", erhalletBelopp);
+            Console.WriteLine("{0,-17}:{1,13:C0}", "Tillbaka", beloppTillbaka);
             Console.WriteLine("-------------------------------\n");
 
             //Beräkna och skriv ut typ och antal valörer man får tillbaka:
