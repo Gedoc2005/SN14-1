@@ -35,7 +35,7 @@ namespace RitaAsterisker2
             } while (keyPressed.Key != ConsoleKey.Escape);
             return;
         }
-        static byte ReadOddByte() //privata metoder?
+        private static byte ReadOddByte()
         {
             while (true)
 	        {
@@ -58,26 +58,30 @@ namespace RitaAsterisker2
 	            } 
 	        }
         }
-        static void RenderTriangle(byte cols)
+        private static void RenderTriangle(byte cols)
         {
-            int test = (cols + 1) / 2;
-            int test2 = 1;
-            int test3 = (cols - 1) / 2;
+            int rowCount = (cols + 1) / 2; //Ger förhållandet mellan triangelns bas och antal rader.
+            int surroundingCount = (cols - 1) / 2; //Som ovan fast för hur många "Surroundings" som skrivs ut i första raden.
+            int fillingCount = 1; 
 
-            for (int r = 0; r < test; r++)
+            //Starta itereration för varje rad:
+            for (int row = 0; row < rowCount; row++)
             {
                 Console.WriteLine();
-                for (int i = 0; i < test3; i++)
+
+                //Starta iteration för varje "Surrounding":
+                for (int colSur = 0; colSur < surroundingCount; colSur++)
                 {
                     Console.Write(Surrounding);
                 }
-                test3--;
+                surroundingCount--;
 
-                for (int j = 0; j < test2; j++)
+                //Starta itereration för varje "Filling":
+                for (int colFill = 0; colFill < fillingCount; colFill++)
                 {
                     Console.Write(Filling);
                 }
-                test2 += 2;
+                fillingCount += 2;
             }
             return;
             
