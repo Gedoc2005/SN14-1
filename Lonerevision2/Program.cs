@@ -10,27 +10,31 @@ namespace Lonerevision
     {
         private static void Main(string[] args)
         {
-            //Loopa programmet tills användaren avbryter:
+            //Loopa programmet tills användaren, när förfrågad, trycker på Escape:
             do
             {
                 try
                 {
-                    //Mata in antal löner:
+                    //Mata in antal löner och kontrollera returvärdet:
                     int salariesCount = ReadInt("Ange antal löner att mata in: ");
-                    Console.WriteLine(); //Går det verkligen inte att lägga in radbryt i metoden?
+                    Console.WriteLine();
                     if (salariesCount < 2)
                     {
                         throw new Exception();
                     }
 
+                    //Mata in löner:
                     int[] salaryValues = ReadSalaries(salariesCount);
 
+                    //Skriv ut löner:
                     ViewResults(salaryValues);
                 }
                 catch (Exception)
                 {
                     ViewMessage("Du måste mata in minst två löner för att kunna göra en beräkning!", true);
                 }
+
+                //Skicka förfrågan och returnera svar om omstart av programmet:
             } while (IsContinuing());
             return;
         }
@@ -44,11 +48,11 @@ namespace Lonerevision
             int[] sourceSorted = new int[source.Length];
             int sourceLength = source.Length;
 
-            //Beräkna medianen genom att först kopiera sedan sortera kopian:
+            //Beräkna medianen genom att först kopiera, sedan sortera kopian:
             Array.Copy(source, sourceSorted, sourceLength);
             Array.Sort(sourceSorted);
 
-            //Avgör om medianen ska räknas ut för jämnt eller udda antal löner, samt räkna ut medianen:
+            //Avgör om medianen ska räknas ut för jämnt eller udda antal löner, samt räkna ut och returnera medianen:
             if ((sourceLength % 2) == 0)
             {
                 int middleElement1 = sourceSorted[(sourceLength / 2) - 1];
@@ -62,8 +66,11 @@ namespace Lonerevision
         }
         private static bool IsContinuing()
         {
+            //Fråga om att fortsätta programmet:
             string message = string.Format("\n {0} Tryck tangent för ny beräkning - Esc avslutar.", (char)16);
             ViewMessage(message, false);
+
+            //Läs och returnera knappnedtryck som bool:
             return Console.ReadKey(true).Key != ConsoleKey.Escape;
         }
         private static int ReadInt(string prompt)
@@ -99,6 +106,8 @@ namespace Lonerevision
         private static int[] ReadSalaries(int count)
         {
             int[] salaryValues = new int[count];
+
+            //Skriv in lön för respektive element i array:
             for (int currentSalary = 0; currentSalary < count; currentSalary++)
             {
                 string question = string.Format("Ange lön nummer {0}: ", (currentSalary + 1));
@@ -109,6 +118,7 @@ namespace Lonerevision
         }
         private static void ViewMessage(string message, bool isError)
         {
+            //Skriv ut felmeddelande om isError är true:
             if (isError)
             {
                 Console.BackgroundColor = ConsoleColor.Red;
@@ -116,6 +126,7 @@ namespace Lonerevision
                 Console.Write(message);
                 Console.ResetColor();
             }
+            //Skriv ut meddelande:
             else
             {
                 Console.BackgroundColor = ConsoleColor.Blue;
@@ -127,17 +138,16 @@ namespace Lonerevision
         }
         private static void ViewResults(int[] salaries)
         {
-            //Skriv ut median, medel och spridning för lönerna:
+            //Skriv ut median, medel och spridning för lönerna. Anropa respektive metoder för varje utskrift:
             Console.WriteLine("------------------------------");
             Console.WriteLine("{0,-15}{1,9:C0}", "Medianlön:", GetMedian(salaries));
             Console.WriteLine("{0,-15}{1,9:C0}", "Medellön:", salaries.Average());
             Console.WriteLine("{0,-15}{1,9:C0}", "Lönespridning:", GetDispersion(salaries));
             Console.WriteLine("------------------------------");
 
-            //Skriv ut lönerna i orginal arrayen, 3 löner per rad:
+            //Skriv ut lönerna, 3 löner per rad:
             for (int colCount = 0; colCount < salaries.Length; colCount++)
             {
-
                 if ((colCount != 0) && (colCount % 3 == 0))
                 {
                     Console.WriteLine();
