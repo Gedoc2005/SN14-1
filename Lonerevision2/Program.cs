@@ -29,10 +29,7 @@ namespace Lonerevision
                 }
                 catch (Exception)
                 {
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("Du måste mata in minst två löner för att kunna göra en beräkning!");
-                    Console.ResetColor();
+                    ViewMessage("Du måste mata in minst två löner för att kunna göra en beräkning!", true);
                 }
             } while (IsContinuing());
             return;
@@ -65,10 +62,8 @@ namespace Lonerevision
         }
         private static bool IsContinuing()
         {
-            Console.BackgroundColor = ConsoleColor.Blue;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("\nTryck tangent för ny beräkning - Esc avslutar.\n");
-            Console.ResetColor();
+            string message = string.Format("\n {0} Tryck tangent för ny beräkning - Esc avslutar.", (char)16);
+            ViewMessage(message, false);
             return Console.ReadKey(true).Key != ConsoleKey.Escape;
         }
         private static int ReadInt(string prompt)
@@ -94,14 +89,10 @@ namespace Lonerevision
                         throw new Exception();
                     }
                 }
-
                 catch (Exception)
                 {
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("\nFEL! '{0}' kan inte tolkas som ett heltal.\n", input);
-                    Console.WriteLine();
-                    Console.ResetColor();
+                    string message = string.Format("\nFEL! '{0}' kan inte tolkas som ett heltal.\n", input);
+                    ViewMessage(message, true);
                 }
             }
         }
@@ -118,7 +109,21 @@ namespace Lonerevision
         }
         private static void ViewMessage(string message, bool isError)
         {
-
+            if (isError)
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(message);
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(message);
+                Console.ResetColor();
+            }
+            Console.WriteLine();
         }
         private static void ViewResults(int[] salaries)
         {
