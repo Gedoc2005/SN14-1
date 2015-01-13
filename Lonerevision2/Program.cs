@@ -57,7 +57,7 @@ namespace Lonerevision
             {
                 int middleElement1 = sourceSorted[(sourceLength / 2) - 1];
                 int middleElement2 = sourceSorted[(sourceLength / 2)];
-                return middleElement1 + middleElement2 / 2;
+                return (middleElement1 + middleElement2) / 2;
             }
             else
             {
