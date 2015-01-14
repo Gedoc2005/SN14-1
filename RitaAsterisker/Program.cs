@@ -10,11 +10,11 @@ namespace RitaAsterisker
     {
         static void Main(string[] args)
         {
-            //Skapa loop för raderna:
+            //Gör en iteration för varje rad:
             for (int rad = 0; rad < 25; rad++)
             {
                 //Välj vilken färg som ska skrivas ut:
-                switch (ValjFarg(rad))
+                switch (rad % 3)
                 {
                     case 0:
                         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -29,16 +29,15 @@ namespace RitaAsterisker
                         break;
                 }
 
-                //Intendera nuvarande iterations rad, om metoden Indentera() är true:
-                if (Indentera(rad))
+                //Indentera om nuvarande iteration/rad är udda:
+                if (rad % 2 == 1)
                 {
                         Console.Write(" ");
                 }
 
-                //Skriv ut asteriskerna för varje rad:
-                for (int kol = 0; kol < 39; kol++)
+                //Skriv ut dessa asterisker/kolumner för varje iteration/rad:
+                for (int kolumn = 0; kolumn < 39; kolumn++)
                 {
-                    
                     Console.Write("* ");
                 }
 
@@ -47,19 +46,5 @@ namespace RitaAsterisker
                 Console.WriteLine();
             }
         }
-        #region Metoder
-
-        //Genomför modulus-operation på aktuellt iterationsvärde och returnera ett booleanskt värde:
-        static bool Indentera(int varde)
-        {
-            return varde % 2 != 0;
-        }
-
-        //Genomför modulus-operation på aktuellt iterationsvärde och returnera en integer mellan 0-2 (tre möjliga värden):
-        static int ValjFarg(int varde)
-        {
-            return varde % 3;
-        }
-        #endregion //Avsluta Metoder.
     }
 }
