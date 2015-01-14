@@ -9,8 +9,8 @@ namespace RitaAsterisker2
     class Program
     {
         const int BaseMaxValue = 79;
-        const string Filling = "*";
-        const string Surrounding = " ";
+        const string Printing = "*";
+        const string Indentation = " ";
 
         static void Main(string[] args)
         {
@@ -37,6 +37,7 @@ namespace RitaAsterisker2
         }
         private static byte ReadOddByte()
         {
+            //Fortsätt fråga tills godkänt värde returneras:
             while (true)
 	        {
 	            try 
@@ -61,31 +62,29 @@ namespace RitaAsterisker2
         private static void RenderTriangle(byte cols)
         {
             int rowCount = (cols + 1) / 2; //Ger förhållandet mellan triangelns bas och antal rader.
-            int surroundingCount = (cols - 1) / 2; //Som ovan fast för hur många "Surroundings" som skrivs ut i första raden.
-            int fillingCount = 1; 
+            int indentationCount = (cols - 1) / 2; //Som ovan fast för hur många "Indentation" som skrivs ut i första raden.
+            int printingCount = 1; //Första antalet iterationer för utskrift av "Printing".
 
-            //Starta itereration för varje rad:
+            //Iterera för varje rad:
             for (int row = 0; row < rowCount; row++)
             {
                 Console.WriteLine();
 
-                //Starta iteration för varje "Surrounding":
-                for (int colSur = 0; colSur < surroundingCount; colSur++)
+                //Starta utskrift av konstanten "Indentation":
+                for (int column = 0; column < indentationCount; column++)
                 {
-                    Console.Write(Surrounding);
+                    Console.Write(Indentation);
                 }
-                surroundingCount--;
+                indentationCount--; //Minska antalet iterationer/utskrifter inför nästa rad.
 
-                //Starta itereration för varje "Filling":
-                for (int colFill = 0; colFill < fillingCount; colFill++)
+                //Starta utskrift av konstanten "Printing":
+                for (int column = 0; column < printingCount; column++)
                 {
-                    Console.Write(Filling);
+                    Console.Write(Printing);
                 }
-                fillingCount += 2;
+                printingCount += 2; //Öka antalet iterationer/utskrifter inför nästa rad.
             }
             return;
-            
         }
-
     }
 }
