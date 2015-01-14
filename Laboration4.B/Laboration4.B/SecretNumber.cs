@@ -13,7 +13,7 @@ namespace Laboration4.B
         public const int MaxNumberOfGuesses = 7;
 
         public bool CanMakeGuess { get; private set; }
-        public int Count { get; private set; } //Lagrar antalet frågor
+        public int Count { get; private set; } //Räknar antalet gissningar.
         public int GuessesLeft 
         { 
             get { return -1 * (Count - MaxNumberOfGuesses); } 
@@ -28,7 +28,7 @@ namespace Laboration4.B
             Random random = new Random();
             _number = random.Next(1, 101);
 
-            //Återställ fälten:
+            //Återställ egenskaperna:
             CanMakeGuess = true;
             Count = 0;
         }
@@ -44,7 +44,7 @@ namespace Laboration4.B
                 throw new ArgumentOutOfRangeException();
             }
 
-            //Om gissningen är unik => spara gissningen och inkrementera "frågeräknaren":
+            //Om gissningen är unik => spara gissningen och inkrementera "gissningsräknaren":
             if (Array.IndexOf(_guessedNumbers, number) > -1)
             {
                 Console.WriteLine("Du har redan gissat på {0}. Gör om gissningen!", number);
@@ -74,7 +74,7 @@ namespace Laboration4.B
             }
 
             //Lägg till detta i utskriften när man gissat max antal gånger:
-            if (Count == MaxNumberOfGuesses)//Är detta uttryck överflödigt, kolla countprop
+            if (Count == MaxNumberOfGuesses)
             {
                 Console.WriteLine("Det hemliga talet är {0}", _number);
                 CanMakeGuess = false;
