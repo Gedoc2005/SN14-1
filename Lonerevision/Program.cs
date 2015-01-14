@@ -10,7 +10,6 @@ namespace Lonerevision
     {
         static void Main(string[] args)
         {
-            
             //Loopa programmet tills användaren avbryter:
             do
             {
@@ -46,7 +45,7 @@ namespace Lonerevision
         }
         private static int ReadInt(string question)
         {
-            //Skilj på sträng och integer för att kunna skriva ut svaret i felmeddelandet:
+            //Skilj på inmatat och godkänt värde för att kunna skriva ut svaret i felmeddelandet:
             int approvedInput = 0;
             string input = "";
 
@@ -67,7 +66,6 @@ namespace Lonerevision
                         throw new Exception();
                     }
                 }
-
                 catch (Exception)
                 {
                     Console.BackgroundColor = ConsoleColor.Red;
@@ -77,7 +75,6 @@ namespace Lonerevision
                     Console.ResetColor();
                 } 
 	        }
-
         }
         private static void ProcessSalaries(int count)
         {
@@ -117,7 +114,7 @@ namespace Lonerevision
 
             //Skriv ut median, medel och spridning för lönerna:
             Console.WriteLine("------------------------------");
-            Console.WriteLine("{0,-15}{1,9:C0}", "Medianlön:", salaryMedian); //hur många decimaler ska jag ha?
+            Console.WriteLine("{0,-15}{1,9:C0}", "Medianlön:", salaryMedian);
             Console.WriteLine("{0,-15}{1,9:C0}", "Medellön:", salaryAverage);
             Console.WriteLine("{0,-15}{1,9:C0}", "Lönespridning:", salarySpread);
             Console.WriteLine("------------------------------");
@@ -125,7 +122,6 @@ namespace Lonerevision
             //Skriv ut lönerna i orginal arrayen, 3 löner per rad:
             for (int colCount = 0; colCount < count; colCount++)
             {
-                
                 if ((colCount != 0) && (colCount % 3 == 0))
                 {
                     Console.WriteLine();
@@ -135,6 +131,5 @@ namespace Lonerevision
             Console.WriteLine();
             return;
         }
-
     }
 }
