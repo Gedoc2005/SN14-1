@@ -35,7 +35,6 @@ namespace Laboration4.A
             ////Inkrementera antalet gissningar och skapa en variabel som visar hur många gissningar man har kvar:
             _count++; 
             int invertedCount = -1 * (_count - MaxNumberOfGuesses);
-            
 
             //Skriv ut respektive svar beroende på argumenet/gissningen:
             if (number == _number)
