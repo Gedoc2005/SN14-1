@@ -9,20 +9,20 @@ namespace Laboration4.A
     public class SecretNumber
     {
         //Deklarera variabler och initiera konstanten;
-        private int _count; //Räknar svaren.
+        private int _count; //Lagrar antal gissnigar.
         private int _number; //Det hemliga numret.
         public const int MaxNumberOfGuesses = 7;
 
         public void Initialize()
         {
-            //Skapa objekt av klassen Random och initiera övriga variabler:
+            //Skapa objekt av klassen Random och initiera fälten:
             Random random = new Random();
             _number = random.Next(1, 101);
             _count = 0;
         }
         public bool MakeGuess(int number)
         {
-            //Kolla om argumentet och antalet frågor som är ställda är godkända:
+            //Kolla om antal gissningar och argumentet/gissningen är godkända:
             if (_count >= MaxNumberOfGuesses)
             {
                 throw new ApplicationException();
@@ -31,13 +31,11 @@ namespace Laboration4.A
             {
                 throw new ArgumentOutOfRangeException();
             }
-            else
-            {
-                _count++; //inkrementera "svarsräknaren".
-            }
 
-            //Skapa en variabel som visar hur många frågor man har kvar:
+            ////Inkrementera antalet gissningar och skapa en variabel som visar hur många gissningar man har kvar:
+            _count++; 
             int invertedCount = -1 * (_count - MaxNumberOfGuesses);
+            
 
             //Skriv ut respektive svar beroende på argumenet/gissningen:
             if (number == _number)
@@ -63,6 +61,7 @@ namespace Laboration4.A
             }
             return false;
         }
+
         public SecretNumber()
         {
             Initialize();
