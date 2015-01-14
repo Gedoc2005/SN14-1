@@ -75,7 +75,7 @@ namespace Lonerevision
         }
         private static int ReadInt(string prompt)
         {
-            //Skilj på sträng och integer för att kunna skriva ut svaret i felmeddelandet:
+            //Skilj på inmatat och godkänt värde för att kunna skriva ut svaret i felmeddelandet:
             int approvedInput = 0;
             string input = "";
 
@@ -118,7 +118,7 @@ namespace Lonerevision
         }
         private static void ViewMessage(string message, bool isError)
         {
-            //Skriv ut felmeddelande om isError är true:
+            //Skriv ut som felmeddelande:
             if (isError)
             {
                 Console.BackgroundColor = ConsoleColor.Red;
@@ -126,7 +126,7 @@ namespace Lonerevision
                 Console.Write(message);
                 Console.ResetColor();
             }
-            //Skriv ut meddelande:
+            //Skriv ut som meddelande:
             else
             {
                 Console.BackgroundColor = ConsoleColor.Blue;
