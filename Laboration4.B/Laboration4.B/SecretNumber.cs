@@ -14,6 +14,7 @@ namespace Laboration4.B
 
         public bool CanMakeGuess { get; private set; }
         public int Count { get; private set; } //Räknar antalet gissningar.
+
         public int GuessesLeft 
         { 
             get { return -1 * (Count - MaxNumberOfGuesses); } 
@@ -68,7 +69,7 @@ namespace Laboration4.B
                 Console.WriteLine("{0} är för lågt. Du har {1} gissningar kvar. ",
                     number, GuessesLeft);
             }
-            else if (number > _number)
+            else
             {
                 Console.WriteLine("{0} är för högt. Du har {1} gissningar kvar. ", number, GuessesLeft);
             }
