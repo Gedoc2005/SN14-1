@@ -10,31 +10,32 @@ namespace KylskapA
     {
         static void Main(string[] args)
         {
-            ////1
-            Cooler cooler = new Cooler();
-            //Console.WriteLine(cooler.ToString());
-            ////2
-            //cooler = new Cooler(24.5M, 4M);
-            //Console.WriteLine(cooler.ToString());
-            ////3
-            //cooler = new Cooler(19.5M, 4M, true, false);
-            //Console.WriteLine(cooler.ToString());
+            Cooler cooler;
+            //1
+            cooler = new Cooler();
+            Console.WriteLine(cooler.ToString());
+            //2
+            cooler = new Cooler(24.5M, 4M);
+            Console.WriteLine(cooler.ToString());
+            //3
+            cooler = new Cooler(19.5M, 4M, true, false);
+            Console.WriteLine(cooler.ToString());
             //4
-            //cooler = new Cooler(5.3M, 4M, true, false);
-            //Console.WriteLine(cooler.ToString());
-            //Run(cooler, 10);
+            cooler = new Cooler(5.3M, 4M, true, false);
+            Console.WriteLine(cooler.ToString());
+            Run(cooler, 10);
             //5
-            //cooler = new Cooler(5.3M, 4M, false, false);
-            //Console.WriteLine(cooler.ToString());
-            //Run(cooler, 10);
+            cooler = new Cooler(5.3M, 4M, false, false);
+            Console.WriteLine(cooler.ToString());
+            Run(cooler, 10);
             //6
-            //cooler = new Cooler(5.3M, 4M, true, true);
-            //Console.WriteLine(cooler.ToString());
-            //Run(cooler, 10);
+            cooler = new Cooler(5.3M, 4M, true, true);
+            Console.WriteLine(cooler.ToString());
+            Run(cooler, 10);
             //7
-            //cooler = new Cooler(19.7M, 4M, false, true);
-            //Console.WriteLine(cooler.ToString());
-            //Run(cooler, 10);
+            cooler = new Cooler(19.7M, 4M, false, true);
+            Console.WriteLine(cooler.ToString());
+            Run(cooler, 10);
             //8
             //try
             //{
@@ -54,16 +55,38 @@ namespace KylskapA
             //    ViewErrorMessage(ex.Message);
             //}
             //9
-            try
+            //try
+            //{
+            //    cooler = new Cooler(100M, 100M, false, true);
+            //}
+            //catch (ArgumentException ex)
+            //{
+            //    ViewErrorMessage(ex.Message);
+            //}
+            decimal innerTemperature, targetTemperature;
+            
+            for (int testNumber = 1; testNumber < 11; testNumber++)
             {
-                cooler = new Cooler(100M, 100M, false, true);
-            }
-            catch (ArgumentException ex)
-            {
-                ViewErrorMessage(ex.Message);
-            }
+                switch (switch_on)
+                {
+                    case 1:
 
+                        break;
+                    case 2:
 
+                        break;
+                    case 3:
+
+                        break;
+                    case 4:
+
+                        break;
+                    case 5:
+
+                        break;
+                    default:
+                }
+            }
 
 
 

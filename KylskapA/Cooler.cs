@@ -48,7 +48,7 @@ namespace KylskapA
             }
             set
             {
-                if (value < 0 || value > 20)// TODO: Kolla om jag ska kunna skicka in 0 och 20? Är det rätt värden?
+                if (value < 0 || value > 20)// TODO: Kolla om jag ska kunna skicka in 0 och 20? Är det rätt värden? Ska jag handla det var?
                 {
                     throw new ArgumentException("Måltemperaturen är inte i intervallet 0 - 20°C");
                 }
