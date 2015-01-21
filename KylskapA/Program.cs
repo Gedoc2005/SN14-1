@@ -63,29 +63,41 @@ namespace KylskapA
             //{
             //    ViewErrorMessage(ex.Message);
             //}
-            decimal innerTemperature, targetTemperature;
             
-            for (int testNumber = 1; testNumber < 11; testNumber++)
+            for (int testNumber = 1; testNumber <= 10; testNumber++)
             {
-                switch (switch_on)
+                switch (testNumber)
                 {
                     case 1:
-
+                        cooler = new Cooler();
                         break;
                     case 2:
-
+                        cooler = new Cooler(24.5M, 4M);
                         break;
                     case 3:
-
+                        cooler = new Cooler(19.5M, 4M, true, false);
                         break;
                     case 4:
-
+                        cooler = new Cooler(5.3M, 4M, true, false);
                         break;
                     case 5:
-
+                        cooler = new Cooler(5.3M, 4M, false, false);
                         break;
-                    default:
+                    case 6:
+                        cooler = new Cooler(5.3M, 4M, true, true);
+                        break;
+                    case 7:
+                        cooler = new Cooler(19.7M, 4M, false, true);
+                        break;
+                    case 8:
+                        
+                        break;
+                    case 9:
+                        
+                        break;
                 }
+
+
             }
 
 
@@ -117,6 +129,17 @@ namespace KylskapA
         private static void Test()
         {
 
+        }
+        private static void TryCatch()
+        {
+            try
+            {
+
+            }
+            catch (ArgumentException ex)
+            {
+                ViewErrorMessage(ex.Message);
+            }
         }
     }
 }
