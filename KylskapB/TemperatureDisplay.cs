@@ -8,16 +8,15 @@ namespace KylskapB
 {
     public class TemperatureDisplay
     {
-        private TemperatureSensor _insideTemperatureSensor = new TemperatureSensor();
-        private DoorSensor _doorSensor = new DoorSensor();
-        private ButtonSensor _buttonSensor = new ButtonSensor();
+        private TemperatureSensor _insideTemperatureSensor;
+        private DoorSensor _doorSensor;
+        private ButtonSensor _buttonSensor;
         private decimal _targetTemperature;
         private const decimal OutsideTemperature = 23.7M;
 
-        //todo ska jag koppla dessas props till instanserna oovan?
-        public bool DoorIsOpen { get; }
-        public decimal InsideTemperature { get; }
-        public bool IsOn { get; }
+        public bool DoorIsOpen { get { return _doorSensor.DoorIsOpen; } }
+        public decimal InsideTemperature { get { return _insideTemperatureSensor.Temperature; } }
+        public bool IsOn { get { return _buttonSensor.IsOn; } }
         public decimal TargetTemperature 
         { 
             get
@@ -34,16 +33,19 @@ namespace KylskapB
         }
 
         public TemperatureDisplay(decimal insideTemperature, decimal targetTemperature, bool isOn, bool doorIsOpen)
-        {//todo detta är jag osäker på?
-            DoorIsOpen = doorIsOpen;
-            InsideTemperature = insideTemperature;//todo mattias ska ddet var inside eller utan?
-            IsOn = isOn;
-            TargetTemperature = _targetTemperature;
+        {
+            _doorSensor = new DoorSensor(doorIsOpen);
+            _insideTemperatureSensor = new TemperatureSensor(insideTemperature);
+            _buttonSensor = new ButtonSensor(isOn);
+            TargetTemperature = targetTemperature;
+
         }
 
         public bool Tick()
         {
-            _insideTemperatureSensor.Simulate();//todo mattias vad ska jag stoppa i för instansvärden?
+            _insideTemperatureSensor.Simulate(TargetTemperature, OutsideTemperature, IsOn, DoorIsOpen);
+
+            return InsideTemperature == TargetTemperature ? true : false;//todo vad händer om insidanstemperatur kommer under target?
         }
         public override string ToString()
         {//todo mattias ska den returnera värdet för cooler, har jag inte redan en sådan?

@@ -8,9 +8,9 @@ namespace KylskapB
 {
     public class Cooler
     {
-        private TemperatureDisplay _temperatureDisplay = new TemperatureDisplay();// todo är detta korrekt? 
+        private TemperatureDisplay _temperatureDisplay;// todo är detta korrekt? 
 
-        public bool DoorIsOpen { get { return _temperatureDisplay.DoorIsOpen; } }//todo fixa dessa sen
+        public bool DoorIsOpen { get { return _temperatureDisplay.DoorIsOpen; } }
         public decimal InsideTemperature { get { return _temperatureDisplay.InsideTemperature; } }
         public bool IsOn { get { return _temperatureDisplay.IsOn; } }
         public decimal TargetTemperature
@@ -31,13 +31,14 @@ namespace KylskapB
         }
         public Cooler(decimal temperature, decimal targetTemperature, bool isOn, bool doorIsOpen)
         {
-            //todo mattias den har ju inga värden att tilldela!!!
-
+            _temperatureDisplay = new TemperatureDisplay(temperature, targetTemperature, isOn, doorIsOpen);
         }
 
         public bool Tick()
         {
             //todo mattias ska metoden simulate anropas som på något annat ställle?
+            _temperatureDisplay.Tick();
+            return InsideTemperature == TargetTemperature ? true : false;//todo vad händer om insidanstemperatur kommer under target?
         }
         public override string ToString()
         {
@@ -49,13 +50,5 @@ namespace KylskapB
                 DoorIsOpen == true ? "Öppet" : "Stängt");
             return returnString;
         }
-
-
-
-
-
-
-
-
     }
 }

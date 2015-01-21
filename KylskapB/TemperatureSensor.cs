@@ -10,37 +10,51 @@ namespace KylskapB
     {
         private decimal _temperature;
 
-        public decimal Temperature { get; private set; }
+        public decimal Temperature //todo ska nog kasta exception här!
+        {
+            get { return _temperature; }
+            private set
+            {
+                if (value < 0 || value > 45)
+                {
+                    throw new ArgumentException("blabla!");
+                }
+                _temperature = value;
+            }
+        }
 
         public TemperatureSensor(decimal temperature)
         {
-            Temperature = temperature;//todo fält eller egenskap?
+            Temperature = temperature;
         }
 
         public void Simulate(decimal targetTemperature, decimal outsideTemperature, bool isOn, bool doorIsOpen)
         {
-            if (IsOn)// todo hmmmmmmmm?
+            if (Temperature < outsideTemperature)
             {
-                if (DoorIsOpen)
+                if (isOn)
                 {
-                    InsideTemperature += 0.2M;//todo ska denna klass prop tilldelas?
+                    if (doorIsOpen)
+                    {
+                        Temperature += 0.2M;//todo ska denna klass prop tilldelas?
+                    }
+                    else
+                    {
+                        Temperature -= 0.2M;
+                    }
                 }
                 else
                 {
-                    InsideTemperature -= 0.2M;
+                    if (doorIsOpen)
+                    {
+                        Temperature += 0.5M;
+                    }
+                    else
+                    {
+                        Temperature += 0.1M;
+                    }
                 }
-            }
-            else
-            {
-                if (DoorIsOpen)
-                {
-                    InsideTemperature += 0.5M;
-                }
-                else
-                {
-                    InsideTemperature += 0.1M;
-                }
-            }
+            } 
         }
 
 

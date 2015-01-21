@@ -8,7 +8,7 @@ namespace KylskapB
 {
     public class DoorSensor
     {
-        public bool DoorIsOpen { get; } //todo mattias kolla med mattias om open eller closed. ska den verkligen vara readonly?
+        public bool DoorIsOpen { get; set; } //todo mattias kolla med mattias om open eller closed. ska den verkligen vara readonly?
 
         public DoorSensor(bool doorIsOpen)
         {
