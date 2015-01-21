@@ -144,7 +144,6 @@ namespace KylskapA
         {
             for (int ticks = 0; ticks < minutes; ticks++)
             {
-                
                 c.Tick();
                 Console.WriteLine(c.ToString());
             }
@@ -154,13 +153,6 @@ namespace KylskapA
             Console.BackgroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
             Console.ResetColor();
-        }
-        private static void ViewTestHeader()
-        {
-            for (int column = 0; column < 40; column++)
-            {
-                Console.Write((char)205);
-            }
         }
     }
 }
