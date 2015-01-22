@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace SolidaVolymerA
 {
+    
+
     public abstract class Solid
     {
         private double _height;
@@ -19,7 +21,7 @@ namespace SolidaVolymerA
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentException();
+                    throw new ArgumentException("\nFel! Ange ett flyttal större än 0.\n");
                 }
                 _height = value; 
             } 
@@ -32,7 +34,7 @@ namespace SolidaVolymerA
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentException();
+                    throw new ArgumentException("\nFel! Ange ett flyttal större än 0.\n");
                 }
                 _radius = value;
             }
@@ -43,12 +45,13 @@ namespace SolidaVolymerA
 
         protected Solid(double radius, double height)
         {
-            //todo vad ska in här?
+            Radius = radius;
+            Height = height;
         }
         public override string ToString()
         {
             string returnValue;
-            returnValue = String.Format("{0,-10}{10,-10}{1}\n{2,-10}{10,-10}{3}\n{4,-10}{10,-10}{5}\n{6,-10}{10,-10}{7}\n{8,-10}{10,-10}{9}",
+            returnValue = String.Format("{0,-10}{10,-10}{1:F2}\n{2,-10}{10,-10}{3:F2}\n{4,-10}{10,-10}{5:F2}\n{6,-10}{10,-10}{7:F2}\n{8,-10}{10,-10}{9:F2}",
                 "Radie (r)", Radius,
                 "Höjd (h)", Height, 
                 "Volym", Volume, 

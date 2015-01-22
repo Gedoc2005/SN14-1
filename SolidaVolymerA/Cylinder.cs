@@ -10,17 +10,17 @@ namespace SolidaVolymerA
     {
         public override double BaseArea//todo implementera formler!
         {
-            get { throw new NotImplementedException(); }
+            get { return Math.PI * RadiusSquared; }
         }
-
+        
         public override double SurfaceArea
         {
-            get { throw new NotImplementedException(); }
+            get { return 2 * Math.PI * Radius * (Height + Radius); }
         }
 
         public override double Volume
         {
-            get { throw new NotImplementedException(); }
+            get { return Math.PI * RadiusSquared * Height; }
         }
 
         public Cylinder(double radius, double height)
