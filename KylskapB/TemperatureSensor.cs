@@ -30,39 +30,40 @@ namespace KylskapB
 
         public void Simulate(decimal targetTemperature, decimal outsideTemperature, bool isOn, bool doorIsOpen)
         {
+            decimal change = 0;
             if (Temperature < outsideTemperature)
             {
                 if (isOn)
                 {
                     if (doorIsOpen)
                     {
-                        Temperature += 0.2M;
+                        change = 0.2m;
                     }
                     else
                     {
-                        Temperature -= 0.2M;
+                        change = -0.2M;
                     }
                 }
                 else
                 {
                     if (doorIsOpen)
                     {
-                        Temperature += 0.5M;
+                        change = 0.5M;
                     }
                     else
                     {
-                        Temperature += 0.1M;
+                        change = 0.1M;
                     }
                 }
             }
-            if (Temperature < targetTemperature)
+            if (Temperature + change < targetTemperature)
             {
                 Temperature = targetTemperature;
             }
+            else
+            {
+                Temperature += change;
+            }
         }
-
-
-
-
     }
 }
