@@ -4,26 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolidaVolymerA
+namespace SolidaVolymerB
 {
-    public class Cylinder : Solid
+    public class CircularCone : Solid
     {
-        public override double BaseArea
+        public override double BaseArea//todo här ska jag nog inserta formler!
         {
             get { return Math.PI * RadiusSquared; }
         }
-        
+
         public override double SurfaceArea
         {
-            get { return 2 * Math.PI * Radius * (Height + Radius); }
+            get { return Math.PI * Radius * (Radius + Math.Sqrt(RadiusSquared + HeightSquared)); }
         }
 
         public override double Volume
         {
-            get { return Math.PI * RadiusSquared * Height; }
+            get { return (1 / 3d) * Math.PI * RadiusSquared * Height; }
         }
 
-        public Cylinder(double radius, double height)
+        public CircularCone(double radius, double height)
             : base(radius, height)
         {
 

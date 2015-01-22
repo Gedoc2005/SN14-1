@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolidaVolymerA
+namespace SolidaVolymerB
 {
     public class Cylinder : Solid
     {
+
         public override double BaseArea
         {
             get { return Math.PI * RadiusSquared; }
         }
-        
+
         public override double SurfaceArea
         {
             get { return 2 * Math.PI * Radius * (Height + Radius); }
