@@ -10,9 +10,7 @@ namespace KylskapB
     {
         static void Main(string[] args)
         {
-            //todo mattias är det cooler som ska instansieras i testen?
-            Cooler cooler = new Cooler(5.3M, 4M, true, false);
-            Run(cooler, 10);
+            RunTest();
         }
 
         private static void Run(Cooler c, int minutes)
@@ -30,6 +28,134 @@ namespace KylskapB
             Console.BackgroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
             Console.ResetColor();
+        }
+        private static void RunTest()
+        {
+            Cooler cooler;
+
+            for (int testNumber = 1; testNumber < 10; testNumber++)// todo finns det något bättre testalternativ?
+            {
+                Console.WriteLine("════════════════════════════════════════");
+                Console.WriteLine("Test {0}.", testNumber);
+
+                switch (testNumber)
+                {
+                    case 1:
+                        Console.WriteLine("Test av standardkonstruktorn\n");
+                        cooler = new Cooler();
+                        Console.WriteLine(cooler.ToString());
+                        break;
+                    case 2:
+                        Console.WriteLine("Test av konstruktorn med två parametrar, (24,5 och 4)\n");
+                        cooler = new Cooler(24.5M, 4M);
+                        Console.WriteLine(cooler.ToString());
+                        break;
+                    case 3:
+                        Console.WriteLine("Test av konstruktorn med 4 parametrar, (19,5, 4, True, False)\n");
+                        cooler = new Cooler(19.5M, 4M, true, false);
+                        Console.WriteLine(cooler.ToString());
+                        break;
+                    case 4:
+                        Console.WriteLine("Test av kylning med metoden Tick\n");
+                        cooler = new Cooler(5.3M, 4M, true, false);
+                        Run(cooler, 10);
+                        Console.WriteLine(cooler.ToString());
+                        break;
+                    case 5:
+                        Console.WriteLine("Test av avstängt kylskåp med metoden Tick, vara avslaget och ha stängd dörr\n");
+                        cooler = new Cooler(5.3M, 4M, false, false);
+                        Run(cooler, 10);
+                        Console.WriteLine(cooler.ToString());
+                        break;
+                    case 6:
+                        Console.WriteLine("Test av påslaget kylskåp med metoden Tick, vara på och ha öppen dörr\n");
+                        cooler = new Cooler(5.3M, 4M, true, true);
+                        Run(cooler, 10);
+                        Console.WriteLine(cooler.ToString());
+                        break;
+                    case 7:
+                        Console.WriteLine("Test av avslaget kylskåp med metoden Tick, ha öppen dörr\n");
+                        cooler = new Cooler(19.7M, 4M, false, true);
+                        Run(cooler, 10);
+                        Console.WriteLine(cooler.ToString());
+                        break;
+                    case 8:
+                        Console.WriteLine("Test av egenskaperna så att undantag kastas då innertemperaturen och måltemperaturen tilldelas felaktiga värden\n");
+                        cooler = new Cooler(); //todo använd inte eller?
+                        TemperatureSensor temperatureSensor = new TemperatureSensor();
+                        try
+                        {
+                            temperatureSensor.Temperature = 46M;// todo mattias hur tildela värde om den är privat?
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            ViewErrorMessage(ex.Message);
+                        }
+                        try
+                        {
+                            temperatureSensor.Temperature = -1M;
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            ViewErrorMessage(ex.Message);
+                        }
+                        try
+                        {
+                            cooler.TargetTemperature = 21M;
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            ViewErrorMessage(ex.Message);
+                        }
+                        try
+                        {
+                            cooler.TargetTemperature = -1M;
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            ViewErrorMessage(ex.Message);
+                        }
+                        break;
+                    case 9:
+                        Console.WriteLine("Test av konstruktorerna så att undantag kastas då innertemperaturen och måltemperaturen tilldelas felaktiga värden\n");
+                        cooler = new Cooler();
+                        try
+                        {
+                            cooler = new Cooler(46M, 0M);
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            ViewErrorMessage(ex.Message);
+                        }
+                        try
+                        {
+                            cooler = new Cooler(-1M, 0M);
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            ViewErrorMessage(ex.Message);
+                        }
+                        try
+                        {
+                            cooler = new Cooler(0M, 21M);
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            ViewErrorMessage(ex.Message);
+                        }
+                        try
+                        {
+                            cooler = new Cooler(0M, -1M);
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            ViewErrorMessage(ex.Message);
+                        }
+                        break;
+                }
+                Console.WriteLine();
+
+            }
         }
     }
 }
