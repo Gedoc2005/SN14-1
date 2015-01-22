@@ -44,11 +44,10 @@ namespace KylskapB
         public bool Tick()
         {
             _insideTemperatureSensor.Simulate(TargetTemperature, OutsideTemperature, IsOn, DoorIsOpen);
-
             return InsideTemperature == TargetTemperature ? true : false;//todo vad händer om insidanstemperatur kommer under target?
         }
         public override string ToString()
-        {//todo mattias ska den returnera värdet för cooler, har jag inte redan en sådan?
+        {
             string returnValue;
             returnValue = String.Format("[{0}] : {1:F1}°C : ({2:F1}°C) - {3}",
                 IsOn == true ? "PÅ" : "AV",

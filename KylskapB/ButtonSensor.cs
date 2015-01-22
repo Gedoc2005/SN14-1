@@ -8,7 +8,7 @@ namespace KylskapB
 {
     public class ButtonSensor
     {
-        public bool IsOn { get; set; }//todo mattias readonly, kolla klassdiagram?
+        public bool IsOn { get; private set; }
 
         public ButtonSensor(bool isOn)
         {

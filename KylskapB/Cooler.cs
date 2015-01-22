@@ -8,12 +8,12 @@ namespace KylskapB
 {
     public class Cooler
     {
-        private TemperatureDisplay _temperatureDisplay;// todo är detta korrekt? 
+        private TemperatureDisplay _temperatureDisplay;
 
         public bool DoorIsOpen { get { return _temperatureDisplay.DoorIsOpen; } }
         public decimal InsideTemperature { get { return _temperatureDisplay.InsideTemperature; } }
         public bool IsOn { get { return _temperatureDisplay.IsOn; } }
-        public decimal TargetTemperature { get { return _temperatureDisplay.TargetTemperature; } }//todo mattias klassdiagrammet visar readonly, instruktionerna säger set?
+        public decimal TargetTemperature { get { return _temperatureDisplay.TargetTemperature; } }
 
         public Cooler()
             : this(0M, 0M)
@@ -32,19 +32,11 @@ namespace KylskapB
 
         public bool Tick()
         {
-            //todo mattias ska metoden simulate anropas som på något annat ställle?
-            _temperatureDisplay.Tick();
-            return InsideTemperature == TargetTemperature ? true : false;//todo vad händer om insidanstemperatur kommer under target?
+            return _temperatureDisplay.Tick();
         }
         public override string ToString()
         {
-            string returnString;
-            returnString = String.Format("[{0}] : {1:F1}°C : ({2:F1}°C) - {3}",
-                IsOn == true ? "PÅ" : "AV",
-                InsideTemperature,
-                TargetTemperature,
-                DoorIsOpen == true ? "Öppet" : "Stängt");
-            return returnString;
+            return _temperatureDisplay.ToString();
         }
     }
 }

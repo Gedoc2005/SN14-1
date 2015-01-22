@@ -17,15 +17,14 @@ namespace KylskapB
         {
             for (int ticks = 0; ticks < minutes; ticks++)
             {
-                if (!c.Tick())
-                {
-                    Console.WriteLine(c.ToString());
-                } 
+                Console.WriteLine(c.ToString());
+                c.Tick();
             }
         }
         private static void ViewErrorMessage(string message)
         {
             Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(message);
             Console.ResetColor();
         }
@@ -81,11 +80,10 @@ namespace KylskapB
                         break;
                     case 8:
                         Console.WriteLine("Test av egenskaperna så att undantag kastas då innertemperaturen och måltemperaturen tilldelas felaktiga värden\n");
-                        cooler = new Cooler(); //todo använd inte eller?
-                        TemperatureSensor temperatureSensor = new TemperatureSensor();
+                        TemperatureDisplay temperatureDisplay = new TemperatureDisplay(10M, 10M, false, false);
                         try
                         {
-                            temperatureSensor.Temperature = 46M;// todo mattias hur tildela värde om den är privat?
+                            temperatureDisplay.TargetTemperature = 21M;
                         }
                         catch (ArgumentException ex)
                         {
@@ -93,23 +91,7 @@ namespace KylskapB
                         }
                         try
                         {
-                            temperatureSensor.Temperature = -1M;
-                        }
-                        catch (ArgumentException ex)
-                        {
-                            ViewErrorMessage(ex.Message);
-                        }
-                        try
-                        {
-                            cooler.TargetTemperature = 21M;
-                        }
-                        catch (ArgumentException ex)
-                        {
-                            ViewErrorMessage(ex.Message);
-                        }
-                        try
-                        {
-                            cooler.TargetTemperature = -1M;
+                            temperatureDisplay.TargetTemperature = -1M;
                         }
                         catch (ArgumentException ex)
                         {

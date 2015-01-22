@@ -10,7 +10,7 @@ namespace KylskapB
     {
         private decimal _temperature;
 
-        public decimal Temperature //todo ska nog kasta exception här!
+        public decimal Temperature
         {
             get { return _temperature; }
             private set
@@ -36,7 +36,7 @@ namespace KylskapB
                 {
                     if (doorIsOpen)
                     {
-                        Temperature += 0.2M;//todo ska denna klassprop tilldelas?
+                        Temperature += 0.2M;
                     }
                     else
                     {
@@ -54,7 +54,11 @@ namespace KylskapB
                         Temperature += 0.1M;
                     }
                 }
-            } 
+            }
+            if (Temperature < targetTemperature)
+            {
+                Temperature = targetTemperature;
+            }
         }
 
 
