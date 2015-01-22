@@ -13,11 +13,7 @@ namespace KylskapB
         public bool DoorIsOpen { get { return _temperatureDisplay.DoorIsOpen; } }
         public decimal InsideTemperature { get { return _temperatureDisplay.InsideTemperature; } }
         public bool IsOn { get { return _temperatureDisplay.IsOn; } }
-        public decimal TargetTemperature
-        {
-            get { return _temperatureDisplay.TargetTemperature; }
-            set { _temperatureDisplay.TargetTemperature = value; }//todo mattias klassdiagrammet visar readonly?
-        }
+        public decimal TargetTemperature { get { return _temperatureDisplay.TargetTemperature; } }//todo mattias klassdiagrammet visar readonly, instruktionerna säger set?
 
         public Cooler()
             : this(0M, 0M)
@@ -25,7 +21,7 @@ namespace KylskapB
 
         }
         public Cooler(decimal temperature, decimal targetTemperature)
-            : this(temperature, targetTemperature, false, false)//todo false eller true?
+            : this(temperature, targetTemperature, false, false)
         {
 
         }

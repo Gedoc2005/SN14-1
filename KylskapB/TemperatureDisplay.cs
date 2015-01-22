@@ -27,8 +27,9 @@ namespace KylskapB
             {
                 if (value < 0 || value > 20)
                 {
-                    throw new ArgumentException("blabla!!");//todo korrekt sträng!
+                    throw new ArgumentException("Måltemperaturen är  inte i intervallet 0 - 20°C");
                 }
+                _targetTemperature = value;
             }
         }
 
@@ -38,7 +39,6 @@ namespace KylskapB
             _insideTemperatureSensor = new TemperatureSensor(insideTemperature);
             _buttonSensor = new ButtonSensor(isOn);
             TargetTemperature = targetTemperature;
-
         }
 
         public bool Tick()
@@ -57,18 +57,5 @@ namespace KylskapB
                 DoorIsOpen == true ? "Öppet" : "Stängt");
             return returnValue;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

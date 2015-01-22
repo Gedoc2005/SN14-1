@@ -17,7 +17,7 @@ namespace KylskapB
             {
                 if (value < 0 || value > 45)
                 {
-                    throw new ArgumentException("blabla!");
+                    throw new ArgumentException("Innertemperaturen är  inte i intervallet 0 - 45°C");
                 }
                 _temperature = value;
             }
@@ -36,7 +36,7 @@ namespace KylskapB
                 {
                     if (doorIsOpen)
                     {
-                        Temperature += 0.2M;//todo ska denna klass prop tilldelas?
+                        Temperature += 0.2M;//todo ska denna klassprop tilldelas?
                     }
                     else
                     {

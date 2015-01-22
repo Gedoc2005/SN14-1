@@ -12,15 +12,7 @@ namespace KylskapB
 
         public ButtonSensor(bool isOn)
         {
-            IsOn = isOn; //todo mattaias
+            IsOn = isOn;
         }
-
-
-
-
-
-
-
-
     }
 }
