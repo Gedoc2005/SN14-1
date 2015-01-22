@@ -8,7 +8,7 @@ namespace SolidaVolymerB
 {
     public class CircularCone : Solid
     {
-        public override double BaseArea//todo här ska jag nog inserta formler!
+        public override double BaseArea
         {
             get { return Math.PI * RadiusSquared; }
         }

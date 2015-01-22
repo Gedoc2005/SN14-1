@@ -48,16 +48,37 @@ namespace SolidaVolymerB
             Radius = radius;
             Height = height;
         }
-        public override string ToString()//todo fixa här
+        public override string ToString()
         {
-            string returnValue = String.Format("{0}{1,10}{2,6}{3,13}{4,13}{5,13}", 
-                this.GetType(), Radius, )
+            string returnValue = String.Format("{0,-12}{1,9:F1}{2,7:F1}{3,13:F2}{4,13:F2}{5,13:F2}",
+                GetType().Name, Radius, Height, Volume, BaseArea, SurfaceArea);
             
             return returnValue;
         }
-        public int CompareTo(object obj)//todo fixa här
+        public int CompareTo(object obj)
         {
-            throw new NotImplementedException();
+            Solid solid = obj as Solid;
+            if (solid == null)
+            {
+                throw new ArgumentException();
+                
+            }
+            else if (obj == null)
+            {
+                return 1;
+            }
+            else if (this.Volume < solid.Volume)
+            {
+                return -1;
+            }
+            else if (this.Volume > solid.Volume)
+            {
+                return 1;
+            }
+            else//todo kan jag inte göra en ifelse här?
+            {
+                return 0;
+            }
         }
     }
 }
