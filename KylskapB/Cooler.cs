@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace KylskapB
 {
+    //Samtliga egenskaper, konstruktorer och metoder ska ha ett aggregat till klassen TemperatureDisplay:
     public class Cooler
     {
         private TemperatureDisplay _temperatureDisplay;
@@ -16,15 +17,9 @@ namespace KylskapB
         public decimal TargetTemperature { get { return _temperatureDisplay.TargetTemperature; } }
 
         public Cooler()
-            : this(0M, 0M)
-        {
-
-        }
+            : this(0M, 0M) { }
         public Cooler(decimal temperature, decimal targetTemperature)
-            : this(temperature, targetTemperature, false, false)
-        {
-
-        }
+            : this(temperature, targetTemperature, false, false) { }
         public Cooler(decimal temperature, decimal targetTemperature, bool isOn, bool doorIsOpen)
         {
             _temperatureDisplay = new TemperatureDisplay(temperature, targetTemperature, isOn, doorIsOpen);

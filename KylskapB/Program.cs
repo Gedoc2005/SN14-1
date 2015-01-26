@@ -32,7 +32,7 @@ namespace KylskapB
         {
             Cooler cooler;
 
-            for (int testNumber = 1; testNumber < 10; testNumber++)// todo finns det något bättre testalternativ?
+            for (int testNumber = 1; testNumber < 10; testNumber++)
             {
                 Console.WriteLine("════════════════════════════════════════");
                 Console.WriteLine("Test {0}.", testNumber);

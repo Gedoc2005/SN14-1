@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace KylskapB
 {
+    //Deklarera konstanten OutsideTemperature:
+    //Förutom TargetTemperature, som TemperatureDisplay kontrollerar, ska egenskaperna vara aggregat:
     public class TemperatureDisplay
     {
         private TemperatureSensor _insideTemperatureSensor;
@@ -33,6 +35,7 @@ namespace KylskapB
             }
         }
 
+        //Initiera utgångsvärden för kylskåp:
         public TemperatureDisplay(decimal insideTemperature, decimal targetTemperature, bool isOn, bool doorIsOpen)
         {
             _doorSensor = new DoorSensor(doorIsOpen);
@@ -41,11 +44,14 @@ namespace KylskapB
             TargetTemperature = targetTemperature;
         }
 
+        //Aktivera simulering för en minut och kontrollera om måltemperatur är uppnådd:
         public bool Tick()
         {
             _insideTemperatureSensor.Simulate(TargetTemperature, OutsideTemperature, IsOn, DoorIsOpen);
-            return InsideTemperature == TargetTemperature ? true : false;//todo vad händer om insidanstemperatur kommer under target?
+            return InsideTemperature == TargetTemperature ? true : false;
         }
+
+        //Skapa sträng att skriva ut till konsollfönstret:
         public override string ToString()
         {
             string returnValue;

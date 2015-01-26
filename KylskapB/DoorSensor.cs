@@ -8,17 +8,12 @@ namespace KylskapB
 {
     public class DoorSensor
     {
+        //Aggregat till TemperatureDisplay
         public bool DoorIsOpen { get; private set; }
 
         public DoorSensor(bool doorIsOpen)
         {
             DoorIsOpen = doorIsOpen;
         }
-
-
-
-
-
-
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace KylskapB
 {
+    //Aggregat till TemperatureDisplay
     public class TemperatureSensor
     {
         private decimal _temperature;
@@ -28,6 +29,7 @@ namespace KylskapB
             Temperature = temperature;
         }
 
+        //Simulera temperaturskiftningen för en minut utifrån givna förutsättningar:
         public void Simulate(decimal targetTemperature, decimal outsideTemperature, bool isOn, bool doorIsOpen)
         {
             decimal change = 0;
@@ -37,7 +39,7 @@ namespace KylskapB
                 {
                     if (doorIsOpen)
                     {
-                        change = 0.2m;
+                        change = 0.2M;
                     }
                     else
                     {
