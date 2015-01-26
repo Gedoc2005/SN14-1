@@ -61,7 +61,6 @@ namespace SolidaVolymerB
             if (solid == null)
             {
                 throw new ArgumentException();
-                
             }
             else if (obj == null)
             {

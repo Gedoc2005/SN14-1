@@ -34,12 +34,11 @@ namespace SolidaVolymerB
             double radius;
             double height;
 
-            //Array array = Enum.GetValues(typeof(SolidType));
             for (int solid = 0; solid < solids.Length; solid++)
             {
                 radius = random.NextDouble() * (doubleMax - doubleMin) + doubleMin;
                 height = random.NextDouble() * (doubleMax - doubleMin) + doubleMin;
-                switch ((SolidType)random.Next(0, 2))//todo hårdkoda inte!
+                switch ((SolidType)random.Next(0, 2))//todo hårdkoda inte, kanske hämta enumlängd!
                 {
                     case SolidType.CircularCone:
                         solids[solid] = new CircularCone(radius, height);
