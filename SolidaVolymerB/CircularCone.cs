@@ -8,25 +8,21 @@ namespace SolidaVolymerB
 {
     public class CircularCone : Solid
     {
+        //Implementera egenskaperna för att returnera värdet, med en kons respektive formler:
         public override double BaseArea
         {
             get { return Math.PI * RadiusSquared; }
         }
-
         public override double SurfaceArea
         {
             get { return Math.PI * Radius * (Radius + Math.Sqrt(RadiusSquared + HeightSquared)); }
         }
-
         public override double Volume
         {
             get { return (1 / 3d) * Math.PI * RadiusSquared * Height; }
         }
 
         public CircularCone(double radius, double height)
-            : base(radius, height)
-        {
-
-        }
+            : base(radius, height) { }
     }
 }

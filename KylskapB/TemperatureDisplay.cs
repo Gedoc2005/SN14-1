@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace KylskapB
 {
-    //Deklarera konstanten OutsideTemperature:
-    //Förutom TargetTemperature, som TemperatureDisplay kontrollerar, ska egenskaperna vara aggregat:
     public class TemperatureDisplay
     {
+        //Förutom TargetTemperature, som TemperatureDisplay kontrollerar, ska egenskaperna vara aggregat:
+        //Deklarera konstanten OutsideTemperature:
         private TemperatureSensor _insideTemperatureSensor;
         private DoorSensor _doorSensor;
         private ButtonSensor _buttonSensor;
