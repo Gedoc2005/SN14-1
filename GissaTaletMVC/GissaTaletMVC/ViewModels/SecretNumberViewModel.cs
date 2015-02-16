@@ -10,8 +10,8 @@ namespace GissaTaletMVC.ViewModels
 {
     public class SecretNumberViewModel
     {
-        #region Properties
-        private Dictionary<int?, string> _countTexts = new Dictionary<int?, string>//todo konstant?
+        #region Fields/Properties
+        private Dictionary<int?, string> _countTexts = new Dictionary<int?, string>
         {
             {1, "Första"},
             {2, "Andra"},
@@ -24,15 +24,14 @@ namespace GissaTaletMVC.ViewModels
 
         public IReadOnlyList<GuessedNumber> GuessedNumbers { get; set; }
         public int? Number { get; set; }
+        public bool CanMakeGuess { get; set; }
+        public int? Count { get; set; }
+        public GuessedNumber LastGuessedNumber { get; set; }
 
         [Remote("IsOldGuess", "Home")]
         [Required(ErrorMessage = "Du måste göra en gissning.")]
         [Range(1, 100, ErrorMessage = "Talet måste vara mellan 1 och 100.")]
         public int Guess { get; set; }
-
-        public bool CanMakeGuess { get; set; }
-        public int? Count { get; set; }
-        public GuessedNumber LastGuessedNumber { get; set; }
         #endregion
 
         public string GetMessage(Outcome outcome)
@@ -52,6 +51,7 @@ namespace GissaTaletMVC.ViewModels
                     message = String.Format("{0} är för lågt.", LastGuessedNumber.Number);
                     break;
             }
+
             if (!CanMakeGuess)
             {
                 message = String.Format("{0} Inga fler gissningar, det hemliga talet var {1}", message, Number);
@@ -61,7 +61,7 @@ namespace GissaTaletMVC.ViewModels
         }
         public string GetHeader()
         {
-            if (Count == 0)//todo amatörmässigt? null?
+            if (Count == 0 || Count == null)
             {
                 return "";
             }
@@ -69,19 +69,20 @@ namespace GissaTaletMVC.ViewModels
         }
     }
 
+    //Skapa "extensionmetod" för att mappa till vymodell:
     public static class MyExtensions
     {
         public static SecretNumberViewModel ToViewModel(this SecretNumber x, int guess = 0)
         {
             return new SecretNumberViewModel
-           {
-               GuessedNumbers = x.GuessedNumbers,
-               Number = x.Number,
-               Count = x.Count,
-               LastGuessedNumber = x.LastGuessedNumber,
-               CanMakeGuess = x.CanMakeGuess,
-               Guess = guess
-           };
+               {
+                   GuessedNumbers = x.GuessedNumbers,
+                   Number = x.Number,
+                   Count = x.Count,
+                   LastGuessedNumber = x.LastGuessedNumber,
+                   CanMakeGuess = x.CanMakeGuess,
+                   Guess = guess
+               };
         }
     }
 }

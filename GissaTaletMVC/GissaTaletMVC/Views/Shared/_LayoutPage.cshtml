@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>@(ViewBag.Title == null ? "Hemligt nummer" : ViewBag.Title)</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="~/Content/mystyle.css" rel="stylesheet" />
@@ -22,6 +22,18 @@
     <script src="~/Scripts/jquery-2.1.3.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+    <script>
+
+        function EnableEagerValidation() {
+            var itemsNeedingValidation = $('*[data-val="true"]');
+            itemsNeedingValidation.each(function () {
+                $(this).blur(function () { $(this).closest("form").valid(); });
+            });
+        }
+    </script>
+
 </body>
 </html>
 

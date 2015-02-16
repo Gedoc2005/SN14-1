@@ -1,7 +1,7 @@
 ﻿@using GissaTaletMVC.Models
 @model GissaTaletMVC.ViewModels.SecretNumberViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gissa talet";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
@@ -9,48 +9,12 @@
 
 @if (Model.LastGuessedNumber.Outcome != Outcome.Right)
 {
-
-    using (Html.BeginForm("Guess", "Home", FormMethod.Post, new { @class = "form-inline" }))
-    {
-        <fieldset @(Model.CanMakeGuess ? "" : "disabled")>
-            @Html.ValidationSummary("Gissningen misslyckades, rätta till felet och försök igen.")
-            @Html.AntiForgeryToken()
-            <div class="form-group">
-                @Html.LabelFor(m => m.Guess, "Gissa ett tal mellan 1 och 100 ")
-                @Html.TextBoxFor(m => m.Guess, new { @class = "form-control", @Value = "", @placeholder = Model.Guess })
-            </div>
-            <input type="submit" value="Skicka gissning" class="btn btn-info" />
-            @Html.ValidationMessageFor(m => m.Guess)
-        </fieldset>
-    }
+    Html.RenderPartial("_Form");
 }
 
 <p>@Model.GetMessage(Model.LastGuessedNumber.Outcome)</p>
 
 @if (Model.LastGuessedNumber.Outcome != Outcome.Undefined)
 {
-    <div style="border:1px solid black;text-align:center;display:inline-block">
-        @for (int number = 0; number < Model.GuessedNumbers.Count; number++)
-        {
-            <div style="width:40px;float:left;">
-
-                <div style="background-color:black;color:white;">@(number + 1)</div>
-
-                @switch (Model.GuessedNumbers[number].Outcome)
-                {
-                    case Outcome.Right:
-                        <div class="bg-success">&#10003;<br />@Model.GuessedNumbers[number].Number</div>
-                        break;
-                    case Outcome.High:
-                        <div class="bg-danger">&darr;<br />@Model.GuessedNumbers[number].Number</div>
-                        break;
-                    case Outcome.Low:
-                        <div class="bg-warning">&uarr;<br />@Model.GuessedNumbers[number].Number</div>
-                        break;
-                }
-            </div>
-        }
-    </div>
-    <div class="clearfix"></div>
-    @Html.ActionLink("Slumpa nytt hemligt tal!", "Initialize")
+    Html.RenderPartial("_GuessHistory");
 }

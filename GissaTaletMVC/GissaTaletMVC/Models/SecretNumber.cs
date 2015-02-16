@@ -12,33 +12,31 @@ namespace GissaTaletMVC.Models
         private int? _number;
         public const int MaxNumberOfGuesses = 7;
 
-        public bool CanMakeGuess { get { return Count < MaxNumberOfGuesses ? true : false; } }//todo kolla så att operatorn stämmer! kan jag hantera null här?
+        public bool CanMakeGuess { get { return Count < MaxNumberOfGuesses ? true : false; } }
         public int? Count { get { return GuessedNumbers.Count; } }
-        public IReadOnlyList<GuessedNumber> GuessedNumbers { get { return _guessedNumbers; } } //todo användandet av asreadonly()
+        public IReadOnlyList<GuessedNumber> GuessedNumbers { get { return _guessedNumbers.AsReadOnly(); } }
         public GuessedNumber LastGuessedNumber { get { return _lastGuessedNumber; } }
-        public int? Number { get { return CanMakeGuess ? null : _number; } private set { _number = value; } }//todo ge null tills antal gissningar uppnåts? ska bara returneras om gissningar är slut!!!!!
+        public int? Number { get { return CanMakeGuess ? null : _number; } private set { _number = value; } }
 
         public SecretNumber()
         {
-            _guessedNumbers = new List<GuessedNumber>();//todo rätt?
+            _guessedNumbers = new List<GuessedNumber>();
             Initialize();
-            
         }
 
-        public void Initialize()//todo är det här jag ska ge undefined? eller på konstruktorn?
+        public void Initialize()
         {
             _guessedNumbers.Clear();
             _lastGuessedNumber.Outcome = Outcome.Undefined;
 
             Random random = new Random();
             Number = random.Next(1, 101);
-            //todo fler fält/egenskaper som behöver instansiers?
         }
-        public Outcome MakeGuess(int guess)//todo ordna iferna och ska inte alla enum vara med?
+        public Outcome MakeGuess(int guess)//todo skita i returyyp?
         {
             Outcome pending;
 
-            if (guess < 1 && guess > 100)
+            if (guess < 1 || guess > 100)
             {
                 throw new ArgumentOutOfRangeException();
             }
@@ -50,25 +48,26 @@ namespace GissaTaletMVC.Models
             {
                 pending = Outcome.OldGuess;
             }
-            else if (guess == _number)//todo det är väl inte möjligt med switch?
+            else if (guess == _number)
             {
                 pending = Outcome.Right;
             }
-            else if (guess < _number)//todo är det rätt
+            else if (guess < _number)
             {
                 pending = Outcome.Low;
             }
-            else //(guess > _number)//todo else?
+            else
             {
                 pending = Outcome.High;
             }
 
-            _lastGuessedNumber = new GuessedNumber() { Number = guess, Outcome = pending };//todo är det rätt att inte mata in lastnumber i gissade nummer?
+            _lastGuessedNumber = new GuessedNumber() { Number = guess, Outcome = pending };
 
-            if (pending != Outcome.NoMoreGuesses && pending != Outcome.OldGuess)//todo osäker, se ovan!
+            if (pending != Outcome.NoMoreGuesses && pending != Outcome.OldGuess)
             {
                 _guessedNumbers.Add(_lastGuessedNumber);
             }
+
             return pending;
         }
     }

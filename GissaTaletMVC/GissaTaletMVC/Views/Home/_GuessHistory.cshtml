@@ -1,0 +1,30 @@
+﻿@using GissaTaletMVC.Models
+@model GissaTaletMVC.ViewModels.SecretNumberViewModel
+
+@{int number = 1;}
+<div style="border:1px solid black;text-align:center;display:inline-block">
+    @foreach (var guess in Model.GuessedNumbers)
+    {
+        <div style="width:40px;float:left;">
+
+            <div style="background-color:black;color:white;">@number</div>
+
+            @switch (guess.Outcome)
+            {
+                case Outcome.Right:
+                    <div class="bg-success">&#10003;<br />@guess.Number</div>
+                    break;
+                case Outcome.High:
+                <div class="bg-danger">&darr;<br />@guess.Number</div>
+                    break;
+                case Outcome.Low:
+                <div class="bg-warning">&uarr;<br />@guess.Number</div>
+                    break;
+            }
+        </div>
+        number++;
+    }
+</div>
+
+<div class="clearfix"></div>
+@Html.ActionLink("Slumpa nytt hemligt tal!", "Initialize")
