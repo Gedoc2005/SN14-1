@@ -1,12 +1,10 @@
-﻿@using GissaTaletMVC.Models
-@model GissaTaletMVC.ViewModels.SecretNumberViewModel
+﻿@model GissaTaletMVC.ViewModels.SecretNumberViewModel
 
 @{int number = 1;}
 <div style="border:1px solid black;text-align:center;display:inline-block">
     @foreach (var guess in Model.GuessedNumbers)
     {
         <div style="width:40px;float:left;">
-
             <div style="background-color:black;color:white;">@number</div>
 
             @switch (guess.Outcome)
@@ -25,6 +23,5 @@
         number++;
     }
 </div>
-
 <div class="clearfix"></div>
 @Html.ActionLink("Slumpa nytt hemligt tal!", "Initialize")

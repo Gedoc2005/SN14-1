@@ -17,7 +17,7 @@ namespace GissaTaletMVC.Controllers
             return View(GetUser().ToViewModel());
         }
 
-        // Om datan är korrekt görs en gissning, annars skickas man tillbaka till vyn:
+        // Om datan är korrekt görs en gissning, annars skickas den tillbaka till vyn:
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Guess([Bind(Include = "Guess")] SecretNumberViewModel x)
@@ -27,7 +27,7 @@ namespace GissaTaletMVC.Controllers
                 Session["User"] = null;
                 return View("SessionError");
             }
-            if (ModelState.IsValid)//todo fixa validationsummary!
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -48,11 +48,10 @@ namespace GissaTaletMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // Remotevalidering:
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]// Ser till att inga requests cashas hos clienten
         public JsonResult IsOldGuess(int guess)
         {
-            if (Session.IsNewSession) // Ser till att POST-metoden verkligen känner igen att en ny "session" har inletts.
+            if (Session.IsNewSession)// Ser till att POST-metoden verkligen känner igen att en ny "session" har inletts.
             {
                 Session.Abandon();
                 return Json(true, JsonRequestBehavior.AllowGet);

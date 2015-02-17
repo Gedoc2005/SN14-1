@@ -10,6 +10,5 @@
             @Html.TextBoxFor(m => m.Guess, new { @class = "form-control", @Value = "", @placeholder = Model.Guess, @autocomplete = "off" })
         </div>
         <input type="submit" value="Skicka gissning" class="btn btn-info" />
-        @Html.ValidationMessageFor(m => m.Guess)
     </fieldset>
 }

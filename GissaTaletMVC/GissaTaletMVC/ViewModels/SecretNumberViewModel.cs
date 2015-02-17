@@ -11,7 +11,7 @@ namespace GissaTaletMVC.ViewModels
     public class SecretNumberViewModel
     {
         #region Fields/Properties
-        private Dictionary<int?, string> _countTexts = new Dictionary<int?, string>
+        private readonly Dictionary<int?, string> _countTexts = new Dictionary<int?, string>
         {
             {1, "Första"},
             {2, "Andra"},
@@ -31,6 +31,7 @@ namespace GissaTaletMVC.ViewModels
         [Remote("IsOldGuess", "Home")]
         [Required(ErrorMessage = "Du måste göra en gissning.")]
         [Range(1, 100, ErrorMessage = "Talet måste vara mellan 1 och 100.")]
+        [RegularExpression("\\d+", ErrorMessage = "Det måste vara ett tal.")]
         public int Guess { get; set; }
         #endregion
 

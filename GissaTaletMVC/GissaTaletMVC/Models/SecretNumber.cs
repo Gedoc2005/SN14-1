@@ -32,9 +32,9 @@ namespace GissaTaletMVC.Models
             Random random = new Random();
             Number = random.Next(1, 101);
         }
-        public Outcome MakeGuess(int guess)//todo skita i returyyp?
+        public void MakeGuess(int guess)
         {
-            Outcome pending;
+            Outcome y;
 
             if (guess < 1 || guess > 100)
             {
@@ -42,33 +42,31 @@ namespace GissaTaletMVC.Models
             }
             else if (Count == MaxNumberOfGuesses)
             {
-                pending = Outcome.NoMoreGuesses;
+                y = Outcome.NoMoreGuesses;
             }
             else if (GuessedNumbers.Any(x => x.Number == guess))
             {
-                pending = Outcome.OldGuess;
+                y = Outcome.OldGuess;
             }
             else if (guess == _number)
             {
-                pending = Outcome.Right;
+                y = Outcome.Right;
             }
             else if (guess < _number)
             {
-                pending = Outcome.Low;
+                y = Outcome.Low;
             }
             else
             {
-                pending = Outcome.High;
+                y = Outcome.High;
             }
 
-            _lastGuessedNumber = new GuessedNumber() { Number = guess, Outcome = pending };
+            _lastGuessedNumber = new GuessedNumber() { Number = guess, Outcome = y };
 
-            if (pending != Outcome.NoMoreGuesses && pending != Outcome.OldGuess)
+            if (y != Outcome.NoMoreGuesses && y != Outcome.OldGuess)
             {
                 _guessedNumbers.Add(_lastGuessedNumber);
             }
-
-            return pending;
         }
     }
 }
