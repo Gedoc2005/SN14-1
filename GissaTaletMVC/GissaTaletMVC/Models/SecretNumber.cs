@@ -13,7 +13,7 @@ namespace GissaTaletMVC.Models
         public const int MaxNumberOfGuesses = 7;
 
         public bool CanMakeGuess { get { return Count < MaxNumberOfGuesses ? true : false; } }
-        public int? Count { get { return GuessedNumbers.Count; } }
+        public int Count { get { return GuessedNumbers.Count; } }
         public IReadOnlyList<GuessedNumber> GuessedNumbers { get { return _guessedNumbers.AsReadOnly(); } }
         public GuessedNumber LastGuessedNumber { get { return _lastGuessedNumber; } }
         public int? Number { get { return CanMakeGuess ? null : _number; } private set { _number = value; } }
@@ -34,7 +34,7 @@ namespace GissaTaletMVC.Models
         }
         public void MakeGuess(int guess)
         {
-            Outcome y;
+            Outcome outcome;
 
             if (guess < 1 || guess > 100)
             {
@@ -42,28 +42,28 @@ namespace GissaTaletMVC.Models
             }
             else if (Count == MaxNumberOfGuesses)
             {
-                y = Outcome.NoMoreGuesses;
+                outcome = Outcome.NoMoreGuesses;
             }
             else if (GuessedNumbers.Any(x => x.Number == guess))
             {
-                y = Outcome.OldGuess;
+                outcome = Outcome.OldGuess;
             }
             else if (guess == _number)
             {
-                y = Outcome.Right;
+                outcome = Outcome.Right;
             }
             else if (guess < _number)
             {
-                y = Outcome.Low;
+                outcome = Outcome.Low;
             }
             else
             {
-                y = Outcome.High;
+                outcome = Outcome.High;
             }
 
-            _lastGuessedNumber = new GuessedNumber() { Number = guess, Outcome = y };
+            _lastGuessedNumber = new GuessedNumber() { Number = guess, Outcome = outcome };
 
-            if (y != Outcome.NoMoreGuesses && y != Outcome.OldGuess)
+            if (outcome != Outcome.NoMoreGuesses && outcome != Outcome.OldGuess)
             {
                 _guessedNumbers.Add(_lastGuessedNumber);
             }

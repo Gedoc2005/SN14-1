@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Contact>
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.ActionLink("Lägg till", "Create", null, new { @class="btn btn-info"})
+<br /><br />
+<table class="table table-hover">
+    <tr>
+        <th></th>
+        <th>@Html.DisplayNameFor(x => x.FirstName)</th>
+        <th>@Html.DisplayNameFor(x => x.LastName)</th>
+        <th>@Html.DisplayNameFor(x => x.Email)</th>
+        <th>@Html.DisplayNameFor(x => x.Created)</th>
+        <th></th>
+    </tr>
+    @foreach (var contact in Model)
+    {
+        <tr>
+            <td><a href="@Url.Action("Edit", new { id = contact.Id })"><span class="glyphicon glyphicon-edit"></span></a></td>
+            <td>@Html.DisplayFor(x => contact.FirstName)</td>
+            <td>@Html.DisplayFor(x => contact.LastName)</td>
+            <td>@Html.DisplayFor(x => contact.Email)</td>
+            <td>@Html.DisplayFor(x => contact.Created)</td>
+            <td><a href="@Url.Action("Delete", new { id = contact.Id })"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+    }
+</table>

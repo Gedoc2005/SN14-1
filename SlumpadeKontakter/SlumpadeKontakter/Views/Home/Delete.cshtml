@@ -1,0 +1,18 @@
+﻿@model Contact
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Ta bort kontakt</h2>
+<p>Bekräfta borttagning av <strong>@Model.FirstName @Model.LastName</strong></p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Id)
+    <div class="form-group">
+        @Html.ActionLink("Avbryt", "Index", null, new { @class = "btn btn-default" })
+        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Ta bort</button>
+    </div>
+}

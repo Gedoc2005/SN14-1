@@ -4,14 +4,14 @@
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
-<h2>@Model.GetHeader()</h2>
+<h2>@Model.Header</h2>
 
 @if (Model.LastGuessedNumber.Outcome != Outcome.Right)
 {
     Html.RenderPartial("_Form");
 }
 
-<p>@Model.GetMessage(Model.LastGuessedNumber.Outcome)</p>
+<p>@Model.Message</p>
 
 @if (Model.LastGuessedNumber.Outcome != Outcome.Undefined)
 {
